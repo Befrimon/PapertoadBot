@@ -372,9 +372,9 @@ class GameBot:
 
         now = datetime.date.today()
         UserManager.create(
-            user_id=user_id, date_joined=now.strftime("%d.%m %Y"), action_count=0,
+            ask_ban=False, user_id=user_id, date_joined=now.strftime("%d.%m %Y"), action_count=0,
             char_name=info["name"], char_race=info["race"], char_class=info["class"],
-            action=False, skills=[]
+            action=False, skills=[], inventory=[]
         )
 
         await_msg = RepliesManager.get("await_gm")
