@@ -150,6 +150,8 @@ user_unbanned: |
 from_gm: |
   Сообщение от мастера
   <blockquote>{msg}</blockquote>
+data_reloaded: |
+  Данные из файлов перезагружены!
 
 # Errors
 parse_error: |

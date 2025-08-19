@@ -386,7 +386,7 @@ class GameBot:
             char_class=info["class"], class_desc=info["class_desc"],
             description=msg.text
         )
-        await GameBot.get_bot().send_message(chat_id=user_id, text=gm_msg)
+        await GameBot.get_bot().send_message(chat_id=GameBot.gm_id, text=gm_msg)
     #endregion
 
     #region GM commands
@@ -527,6 +527,17 @@ class GameBot:
         await GameBot.get_bot().send_message(chat_id=args[1], text=skill_msg, parse_mode=ParseMode.HTML)
 
         gm_msg = RepliesManager.get("skill_added")
+        await msg.answer(gm_msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+
+    @staticmethod
+    @dp.message(Command("reload"))
+    async def reload(msg: Message) -> None:
+        user_id = msg.from_user.id
+        if user_id != GameBot.gm_id:
+            return
+
+        UserManager.reload_data()
+        gm_msg = RepliesManager.get("data_reloaded")
         await msg.answer(gm_msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
     #endregion
 

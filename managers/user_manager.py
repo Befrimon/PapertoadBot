@@ -41,6 +41,11 @@ class UserManager:
         file.close()
 
     @classmethod
+    def reload_data(cls):
+        cls._save()
+        cls._load_data()
+
+    @classmethod
     def get_user(cls, user_id: int):
         return cls.user_data[user_id]
 
